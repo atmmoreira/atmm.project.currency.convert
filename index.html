@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Calculo de Salarios Mensal - Remote Works</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<h2 class="text-center">CÁLCULO RÁPIDO <br> CONVERSÃO EM REAL</h2>
+				<form class="m-top20">
+					<div class="form-group">
+						<input type="text" class="form-control" data-js="inputSalary" placeholder="DIGITE VALOR ANUAL">
+					</div>
+					<div class="row">
+						<div class="col-md-3"><button data-js="dolar" type="submit" class="btn btn-block btn-primary" data-toggle="tooltip" data-placement="bottom" title="Dolar Americano"><span>$USD</span></button></div>
+						<div class="col-md-3"><button data-js="dolarcanadense" type="submit" class="btn btn-block btn-danger" data-toggle="tooltip" data-placement="bottom" title="Dolar Canadense"><span>$CAD</span></button></div>
+						<div class="col-md-3"><button data-js="euro" type="submit" class="btn btn-block btn-info" data-toggle="tooltip" data-placement="bottom" title="Euro"><span>€EUR</span></button></div>
+						<div class="col-md-3"><button data-js="libra" type="submit" class="btn btn-block btn-warning" data-toggle="tooltip" data-placement="bottom" title="Libra Esterlina"><span>£GBP</span></button></div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row m-top40">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="list-group">
+					<a href="#" class="list-group-item active">
+						CONVERSÃO REALIZADA <div class="pull-right" data-js="cotation"></div>
+					</a>
+					<a href="#" class="list-group-item">Valor Digitado: <span data-js="salary"></span> </a>
+					<a href="#" class="list-group-item">Valor Mensal: <span data-js="salaryMonth"></span> </a>
+					<a href="#" class="list-group-item">Valor Mensal em Real: <span data-js="salaryConverted"></span> </a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="app.js"></script>
+	<script src="js/calculos.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
+</body>
+</html>
