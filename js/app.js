@@ -3,8 +3,8 @@
 
   const formata = (num) => {
     let p = Number(num).toFixed(2).split(".");
-    return "" + p[0].split("").reverse().reduce(function(acc, num, i, orig) {
-        return  num + (i && !(i % 3) ? "." : "") + acc;
+    return "" + p[0].split("").reverse().reduce(function (acc, num, i, orig) {
+      return num + (i && !(i % 3) ? "." : "") + acc;
     }, "") + "," + p[1];
   }
 
@@ -56,7 +56,8 @@
     let round = formatCurrency();
     let divide = divideCurrency();
     let data = getData();
-    let usd = data.USD.high;
+    let dataResult = data.USD.high;
+    let usd = dataResult.replace(',', '.');
     textSalary.textContent = '$USD ' + round;
     textSalaryMonth.textContent = '$USD ' + formata(divide);
     textSalaryReal.textContent = 'R$ ' + formata(divide * usd);
@@ -70,7 +71,8 @@
     let round = formatCurrency();
     let divide = divideCurrency();
     let data = getData();
-    let cad = data.CAD.high;
+    let dataResult = data.CAD.high;
+    let cad = dataResult.replace(',', '.');
     textSalary.textContent = '$CAD ' + round;
     textSalaryMonth.textContent = '$CAD ' + formata(divide);
     textSalaryReal.textContent = 'R$ ' + formata(divide * cad);
@@ -84,9 +86,10 @@
     let round = formatCurrency();
     let divide = divideCurrency();
     let data = getData();
-    let euro = data.EUR.high;
+    let dataResult = data.EUR.high;
+    let euro = dataResult.replace(',', '.')
     textSalary.textContent = '€EUR ' + round;
-    textSalaryMonth.textContent = '€EUR ' +formata(divide);
+    textSalaryMonth.textContent = '€EUR ' + formata(divide);
     textSalaryReal.textContent = 'R$ ' + formata(divide * euro);
     cotation.textContent = '€EUR ' + euro;
     cleanFields();
@@ -98,7 +101,8 @@
     let round = formatCurrency();
     let divide = divideCurrency();
     let data = getData();
-    let libra = data.GBP.high;
+    let dataResult = data.GBP.high;
+    let libra = dataResult.replace(',', '.')
     textSalary.textContent = '£GBP ' + round;
     textSalaryMonth.textContent = '£GBP ' + formata(divide);
     textSalaryReal.textContent = 'R$ ' + formata(divide * libra);
