@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Calculo de Salarios Mensal - Remote Works</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container">
+		<h2 class="text-center">CÁLCULO RÁPIDO <br> CONVERSÃO EM REAL</h2>
+		<div class="row">
+			<div class="col-md-6 offset-3">
+				<div class="row mt-5">
+					<div class="col-md-5">
+						<input type="text" class="form-control" data-js="inputSalary" placeholder="Digite valor anual">
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<select id="inputState" class="form-control">
+								<option selected>Moeda</option>
+								<option>Dolar Americano</option>
+								<option>Dolar Canadense</option>
+								<option>Libra Esterlina</option>
+								<option>Euro</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<button type="submit" class="btn btn-primary mb-2 btn-block text-uppercase">Converter</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mt-4">
+			<div class="col-md-6 offset-3">
+				<div class="list-group">
+					<a href="#" class="list-group-item active">
+						CONVERSÃO REALIZADA <div class="float-right" data-js="cotation"></div>
+					</a>
+					<a href="#" class="list-group-item">Valor Digitado: <span data-js="salary"></span> </a>
+					<a href="#" class="list-group-item">Valor Mensal: <span data-js="salaryMonth"></span> </a>
+					<a href="#" class="list-group-item">Valor Mensal em Real: <span data-js="salaryConverted"></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="./assets/js/app.js"></script>
+	<script>
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
+</body>
+
+</html>
