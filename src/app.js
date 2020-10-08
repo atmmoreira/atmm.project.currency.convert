@@ -15,7 +15,7 @@ fetchUrl(url)
       cotation.textContent = `${data[optionsCurrency.value].high}`;
       currency.textContent = `${optionsCurrency.value}`;
       currency2.textContent = `${optionsCurrency.value}`;
-      salaryDigited.textContent = formatAmount(inputSalary.value);
+      salaryDigited.textContent = inputSalary.value;
       salaryMonth.textContent = (inputSalary.value / 12).toFixed(2);
       salaryConverted.textContent = formatAmount((inputSalary.value / 12) * data[optionsCurrency.value].high);
     });
