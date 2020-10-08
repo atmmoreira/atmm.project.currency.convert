@@ -1,114 +1,34 @@
-(function () {
-  'use strict';
+import { fetchUrl } from './helpers/apiFetch';
+import { formatAmount } from './helpers/formatAmount';
 
-  const formata = (num) => {
-    let p = Number(num).toFixed(2).split(".");
-    return "" + p[0].split("").reverse().reduce(function (acc, num, i, orig) {
-      return num + (i && !(i % 3) ? "." : "") + acc;
-    }, "") + "," + p[1];
-  }
+const selectors = [
+  document.querySelector('#inputSalary'),
+  document.querySelector('#optionsCurrency'),
+  document.querySelector('#cotation'),
+  document.querySelector('#salaryDigited'),
+  document.querySelector('#salaryMonth'),
+  document.querySelector('#salaryConverted'),
+  document.querySelector('#currency'),
+  document.querySelector('#currency2'),
+  'https://economia.awesomeapi.com.br/json/all'
+];
 
-  let apiCurrent = new XMLHttpRequest();
-  apiCurrent.open('GET', 'https://economia.awesomeapi.com.br/json/all');
-  apiCurrent.send();
-
-  const isApiOk = () => {
-    return apiCurrent.readyState === 4 && apiCurrent.status === 200
-  }
-
-  const getData = () => {
-    let result;
-    try {
-      result = JSON.parse(apiCurrent.responseText);
-    } catch (error) {
-      result = null;
+fetchUrl(selectors[8])
+  .then(response => response.json())
+  .then(data => {
+    for (const key in data) {
+      selectors[1].innerHTML += `
+        <option value="${data[key].code}">${data[key].name}</option>
+      `;
     }
-    return result;
-  }
 
-  const makeWork = () => {
-    if (isApiOk()) return;
-  }
-  apiCurrent.addEventListener('readystatechange', makeWork);
-
-  let inputSalary = document.querySelector('[data-js="inputSalary"]');
-  const cleanFields = () => inputSalary.value = '';
-  let dolar = document.querySelector('[data-js="dolar"]');
-  let dolarcanadense = document.querySelector('[data-js="dolarcanadense"]');
-  let euro = document.querySelector('[data-js="euro"]');
-  let libra = document.querySelector('[data-js="libra"]');
-  let textSalary = document.querySelector('[data-js="salary"]');
-  let textSalaryMonth = document.querySelector('[data-js="salaryMonth"]');
-  let textSalaryReal = document.querySelector('[data-js="salaryConverted"]');
-  let cotation = document.querySelector('[data-js="cotation"]');
-
-  const formatCurrency = (n) => {
-    return n = formata(inputSalary.value);
-  }
-
-  const divideCurrency = () => {
-    let resultDivide = inputSalary.value / 12;
-    return resultDivide;
-  }
-
-  const funcDolar = event => {
-    event.preventDefault();
-    let round = formatCurrency();
-    let divide = divideCurrency();
-    let data = getData();
-    let dataResult = data.USD.high;
-    let usd = dataResult.replace(',', '.');
-    textSalary.textContent = '$USD ' + round;
-    textSalaryMonth.textContent = '$USD ' + formata(divide);
-    textSalaryReal.textContent = 'R$ ' + formata(divide * usd);
-    cotation.textContent = '$USD ' + usd;
-    cleanFields();
-  };
-  dolar.addEventListener('click', funcDolar);
-
-  const funcDolarCanadense = event => {
-    event.preventDefault();
-    let round = formatCurrency();
-    let divide = divideCurrency();
-    let data = getData();
-    let dataResult = data.CAD.high;
-    let cad = dataResult.replace(',', '.');
-    textSalary.textContent = '$CAD ' + round;
-    textSalaryMonth.textContent = '$CAD ' + formata(divide);
-    textSalaryReal.textContent = 'R$ ' + formata(divide * cad);
-    cotation.textContent = '$CAD ' + cad;
-    cleanFields();
-  };
-  dolarcanadense.addEventListener('click', funcDolarCanadense);
-
-  const funcEuro = event => {
-    event.preventDefault();
-    let round = formatCurrency();
-    let divide = divideCurrency();
-    let data = getData();
-    let dataResult = data.EUR.high;
-    let euro = dataResult.replace(',', '.')
-    textSalary.textContent = '€EUR ' + round;
-    textSalaryMonth.textContent = '€EUR ' + formata(divide);
-    textSalaryReal.textContent = 'R$ ' + formata(divide * euro);
-    cotation.textContent = '€EUR ' + euro;
-    cleanFields();
-  };
-  euro.addEventListener('click', funcEuro);
-
-  const funcLibra = event => {
-    event.preventDefault();
-    let round = formatCurrency();
-    let divide = divideCurrency();
-    let data = getData();
-    let dataResult = data.GBP.high;
-    let libra = dataResult.replace(',', '.')
-    textSalary.textContent = '£GBP ' + round;
-    textSalaryMonth.textContent = '£GBP ' + formata(divide);
-    textSalaryReal.textContent = 'R$ ' + formata(divide * libra);
-    cotation.textContent = '£GBP ' + libra;
-    cleanFields();
-  };
-  libra.addEventListener('click', funcLibra);
-
-})();
+    optionsCurrency.addEventListener('change', () => {
+      selectors[2].textContent = `${data[selectors[1].value].high}`;
+      selectors[6].textContent = `${selectors[1].value}`;
+      selectors[7].textContent = `${selectors[1].value}`;
+      selectors[3].textContent = formatAmount(selectors[0].value);
+      selectors[4].textContent = formatAmount(selectors[0].value) / 12;
+      selectors[5].textContent = formatAmount((selectors[0].value / 12) * data[selectors[1].value].high);
+    });
+  })
+  .catch(error => { console.error(error); });

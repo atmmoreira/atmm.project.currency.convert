@@ -4,7 +4,8 @@
   "description": "A project for convert current",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "npx webpack"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,9 @@
     "babel-loader": "^8.1.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "regenerator-runtime": "^0.13.7"
   }
 }
