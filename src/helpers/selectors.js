@@ -1,13 +1,9 @@
-let url = 'https://economia.awesomeapi.com.br/json/all';
-let inputSalary = document.querySelector('#inputSalary');
-let optionsCurrency = document.querySelector('#optionsCurrency');
-let cotation = document.querySelector('#cotation');
-let salaryDigited = document.querySelector('#salaryDigited');
-let salaryMonth = document.querySelector('#salaryMonth');
-let salaryConverted = document.querySelector('#salaryConverted');
-let currency = document.querySelector('#currency');
-let currency2 = document.querySelector('#currency2');
-
-export {
-  url, inputSalary, optionsCurrency, cotation, salaryDigited, salaryMonth, salaryConverted, currency, currency2
-}
+export let url = 'https://economia.awesomeapi.com.br/json/all';
+export let inputSalary = document.querySelector('#inputSalary');
+export let optionsCurrency = document.querySelector('#optionsCurrency');
+export let cotation = document.querySelector('#cotation');
+export let salaryDigited = document.querySelector('#salaryDigited');
+export let salaryMonth = document.querySelector('#salaryMonth');
+export let salaryConverted = document.querySelector('#salaryConverted');
+export let currency = document.querySelector('#currency');
+export let currency2 = document.querySelector('#currency2');
